@@ -48,7 +48,7 @@ cd client && npm install
 
 # Start frontend Vue DevServer
 cd client
-npm run server
+npm run serve
 
 # Build frontend for production
 cd client
