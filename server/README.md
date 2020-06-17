@@ -18,12 +18,6 @@ npm run dev
 npm run start
 ```
 
-### Lints and fixes files
-
-```
-npm run lint
-```
-
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
