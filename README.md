@@ -2,7 +2,7 @@
 
 Basic fullstack todolist app built using the MEVN stack.
 
-![Preview Image](https://i.imgur.com/d1yRGjK.png)
+![Preview Image](https://i.imgur.com/o7UmZGv.png)
 
 ## Next Steps
 
