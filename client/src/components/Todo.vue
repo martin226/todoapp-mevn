@@ -53,7 +53,7 @@
               type="button"
               class="close"
               aria-label="close"
-              @click="deleteTask($event.target, todo._id)"
+              @click="deleteTask(todo._id, $event.target)"
             >
               <span aria-hidden="true">&times;</span>
             </button>
@@ -126,8 +126,8 @@ export default {
         .catch(err => this.$toastr.e(`An error occurred : ${err}`));
     },
     // Delete task from todolist
-    deleteTask: async function(el, id) {
-      el.parentElement.disabled = true; // Disable button after click to prevent 404 error
+    deleteTask: async function(id, el=null) {
+      if(el) el.parentElement.disabled = true; // Disable button after click to prevent 404 error
       await ApiClient.deleteTask(id)
         .then(() => {
           this.retrieveTasks(); // Reload the array
@@ -137,7 +137,7 @@ export default {
     // Edit task in todolist
     editTask: async function(id, task, completed, editing) {
       this.beforeEditCache = task; // Save the task to edit cache
-      if (task == "") return this.deleteTask(id); // Delete from todolist if the new task is empty
+      if (!/\S/.test(task)) return; // Return if the new task is empty
       await ApiClient.editTask(id, task, completed, editing)
         .then(() => {
           this.retrieveTasks(); // Reload the array
@@ -146,6 +146,7 @@ export default {
     },
     // Revert the task back to the state in the cache
     cancelEdit: async function(id, completed) {
+      if (!/\S/.test(this.beforeEditCache)) return; // Return if the cache is empty
       await ApiClient.editTask(id, this.beforeEditCache, completed, false)
         .then(() => {
           this.retrieveTasks(); // Reload the array
