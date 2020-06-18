@@ -53,7 +53,7 @@
               type="button"
               class="close"
               aria-label="close"
-              @click="deleteTask(todo._id)"
+              @click="deleteTask($event.target, todo._id)"
             >
               <span aria-hidden="true">&times;</span>
             </button>
@@ -126,7 +126,8 @@ export default {
         .catch(err => this.$toastr.e(`An error occurred : ${err}`));
     },
     // Delete task from todolist
-    deleteTask: async function(id) {
+    deleteTask: async function(el, id) {
+      el.parentElement.disabled = true; // Disable button after click to prevent 404 error
       await ApiClient.deleteTask(id)
         .then(() => {
           this.retrieveTasks(); // Reload the array
