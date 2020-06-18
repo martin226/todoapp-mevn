@@ -64,6 +64,10 @@ label {
   margin: 10px;
 }
 
+.extra-info{
+  font-size: 16px;
+}
+
 @-webkit-keyframes bounce {
   0%,
   100% {

@@ -22,7 +22,7 @@ router.get('/todos', (req, res) => {
 router.post('/todo', (req, res) => {
 
     // If todo task is not present in request, return a 400 error
-    if (!req.body.todo || req.body.todo === "") {
+    if (!req.body.todo || req.body.todo === "" || !req.body.created) {
         return res.status(400).json({
             "error": 400
         });
@@ -31,7 +31,7 @@ router.post('/todo', (req, res) => {
     // Create a Todo object and save to MongoDB
     const newTodo = new Todo({
         todo: req.body.todo,
-        completed: false
+        created: req.body.created
     })
     newTodo
         .save()
@@ -92,7 +92,7 @@ router.put('/todo/:id', (req, res) => {
                     }, {
                         todo: req.body.todo,
                         completed: req.body.completed,
-                        edited: req.body.editing
+                        editing: req.body.editing
                     })
                     .then(todo => {
                         res.status(204).json(todo);

@@ -23,7 +23,7 @@ class ApiClient {
     }
 
     // Add todolist task
-    static addTask(task) {
+    static addTask(task, date) {
         return new Promise((resolve, reject) => {
             fetch(`${url}/todo`, {
                     method: 'POST',
@@ -32,7 +32,8 @@ class ApiClient {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        todo: task
+                        todo: task,
+                        created: date
                     })
                 })
                 .then(response => {

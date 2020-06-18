@@ -7,12 +7,17 @@ const TodoSchema = new mongoose.Schema({
     },
     completed:{
         type: Boolean,
-        required: true
+        required: true,
+        default: false
     },
-    edited:{
+    editing:{
         type: Boolean,
         required: true,
         default: false
+    },
+    created: {
+        type: Date,
+        required: true
     }
 });
 

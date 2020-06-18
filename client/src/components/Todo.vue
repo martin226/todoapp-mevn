@@ -43,7 +43,10 @@
             v-if="!todo.edited"
             @dblclick="editTask(todo._id, todo.todo, todo.completed, true)"
             :class="{ 'completed': todo.completed }"
-          >{{ todo.todo }}</label>
+          >
+            {{ todo.todo }}
+            <p class="extra-info lead">Creation Date: {{ formatDate(todo.created) }}</p>
+          </label>
 
           <button
             v-if="!todo.edited"
@@ -113,7 +116,8 @@ export default {
     // Add task to todolist
     addTask: async function(task) {
       if (!/\S/.test(task)) return;
-      await ApiClient.addTask(task)
+      let created = new Date();
+      await ApiClient.addTask(task, created)
         .then(() => {
           this.newTask = ""; // Clear input field
           this.retrieveTasks(); // Reload the array
@@ -145,7 +149,13 @@ export default {
           this.retrieveTasks(); // Reload the array
         })
         .catch(err => this.$toastr.e(`An error occurred: ${err}`));
-    } 
+    },
+    formatDate: function(dateString) {
+      let date = new Date(dateString);
+      return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+        .toISOString()
+        .split("T")[0];
+    }
   },
   // Retrieve tasks when the page is loaded
   async beforeMount() {
