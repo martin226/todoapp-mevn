@@ -25,7 +25,6 @@
               class="form-control"
               autofocus
               autocomplete="off"
-              v-if="todo.editing"
               :value="todo.todo"
               @keyup.esc="$event.target.blur()"
               @keyup.enter="editTask(todo._id, $event.target.value, todo.completed, false)"
@@ -35,7 +34,6 @@
           </div>
           <div v-else>
             <input
-              v-if="!todo.editing"
               type="checkbox"
               class="checkbox"
               @click="editTask(todo._id, todo.todo, !todo.completed, todo.editing)"
@@ -44,7 +42,6 @@
 
             <label
               class="todo-item"
-              v-if="!todo.editing"
               @dblclick="editTask(todo._id, todo.todo, todo.completed, true)"
               :class="{ 'completed': todo.completed }"
             >
@@ -53,7 +50,6 @@
             </label>
 
             <button
-              v-if="!todo.editing"
               type="button"
               class="close"
               aria-label="close"
