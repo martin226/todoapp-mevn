@@ -70,14 +70,13 @@ router.get('/todo/:id', (req, res) => {
 
 // Update todo task
 router.put('/todo/:id', (req, res) => {
-
     let id = req.params.id;
 
     // If ID is not a valid ObjectID then return a 400 error
     if (!isValidObjectId(id)) {
         return res.status(400).json({
             "error": 400
-        });
+        }); 
     }
     // Retrieve current values
     Todo.findOne({

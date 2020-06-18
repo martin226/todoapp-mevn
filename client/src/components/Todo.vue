@@ -24,23 +24,23 @@
             class="form-control"
             autofocus
             autocomplete="off"
-            v-if="todo.edited"
+            v-if="todo.editing"
             :value="todo.todo"
             @keyup.enter="editTask(todo._id, $event.target.value, todo.completed, false)"
             @keyup.esc="cancelEdit(todo._id, todo.completed)"
             v-focus
           />
           <input
-            v-if="!todo.edited"
+            v-if="!todo.editing"
             type="checkbox"
             class="checkbox"
-            @click="editTask(todo._id, todo.todo, !todo.completed, todo.edited)"
+            @click="editTask(todo._id, todo.todo, !todo.completed, todo.editing)"
             :checked="todo.completed"
           />
 
           <label
             class="todo-item"
-            v-if="!todo.edited"
+            v-if="!todo.editing"
             @dblclick="editTask(todo._id, todo.todo, todo.completed, true)"
             :class="{ 'completed': todo.completed }"
           >
@@ -49,7 +49,7 @@
           </label>
 
           <button
-            v-if="!todo.edited"
+            v-if="!todo.editing"
             type="button"
             class="close"
             aria-label="close"

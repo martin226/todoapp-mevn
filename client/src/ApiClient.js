@@ -1,5 +1,5 @@
 // REST API URL
-const url = "api/"
+const url = "api"
 
 // Asynchronous Client using Javascript Fetch APIs 
 class ApiClient {
