@@ -19,44 +19,49 @@
     <div class="todo-list" v-if="todoList.length > 0" v-cloak>
       <ul class="list-group">
         <li class="list-group-item" v-for="todo in filteredList" :key="todo._id">
-          <input
-            type="text"
-            class="form-control"
-            autofocus
-            autocomplete="off"
-            v-if="todo.editing"
-            :value="todo.todo"
-            @keyup.enter="editTask(todo._id, $event.target.value, todo.completed, false)"
-            @keyup.esc="cancelEdit(todo._id, todo.completed)"
-            v-focus
-          />
-          <input
-            v-if="!todo.editing"
-            type="checkbox"
-            class="checkbox"
-            @click="editTask(todo._id, todo.todo, !todo.completed, todo.editing)"
-            :checked="todo.completed"
-          />
+          <div v-if="todo.editing">
+            <input
+              type="text"
+              class="form-control"
+              autofocus
+              autocomplete="off"
+              v-if="todo.editing"
+              :value="todo.todo"
+              @keyup.esc="$event.target.blur()"
+              @keyup.enter="editTask(todo._id, $event.target.value, todo.completed, false)"
+              @blur="cancelEdit(todo._id, todo.completed)"
+              v-focus
+            />
+          </div>
+          <div v-else>
+            <input
+              v-if="!todo.editing"
+              type="checkbox"
+              class="checkbox"
+              @click="editTask(todo._id, todo.todo, !todo.completed, todo.editing)"
+              :checked="todo.completed"
+            />
 
-          <label
-            class="todo-item"
-            v-if="!todo.editing"
-            @dblclick="editTask(todo._id, todo.todo, todo.completed, true)"
-            :class="{ 'completed': todo.completed }"
-          >
-            {{ todo.todo }}
-            <p class="extra-info lead">Creation Date: {{ formatDate(todo.created) }}</p>
-          </label>
+            <label
+              class="todo-item"
+              v-if="!todo.editing"
+              @dblclick="editTask(todo._id, todo.todo, todo.completed, true)"
+              :class="{ 'completed': todo.completed }"
+            >
+              {{ todo.todo }}
+              <p class="extra-info lead">Creation Date: {{ formatDate(todo.created) }}</p>
+            </label>
 
-          <button
-            v-if="!todo.editing"
-            type="button"
-            class="close"
-            aria-label="close"
-            @click="deleteTask(todo._id)"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
+            <button
+              v-if="!todo.editing"
+              type="button"
+              class="close"
+              aria-label="close"
+              @click="deleteTask(todo._id)"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
         </li>
       </ul>
 

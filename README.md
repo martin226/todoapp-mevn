@@ -8,7 +8,7 @@ Basic fullstack todolist app built using the MEVN stack.
 
 - [ ] Todo categories
 - [x] Task date of creation
-- [ ] Click away to exit edit mode
+- [x] Click away to exit edit mode
 - [ ] Dark mode
 - [ ] Better design/theme
 
