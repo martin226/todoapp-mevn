@@ -72,7 +72,7 @@ npm run build
 
 ## Version
 
-1.0.0
+1.2.4
 
 ## License
 
