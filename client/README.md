@@ -3,25 +3,25 @@
 ## Project setup
 
 ```
-npm install
+yarn
 ```
 
 ### Compiles and hot-reloads for development
 
 ```
-npm run serve
+yarn serve
 ```
 
 ### Compiles and minifies for production
 
 ```
-npm run build
+yarn build
 ```
 
 ### Lints and fixes files
 
 ```
-npm run lint
+yarn lint
 ```
 
 ### Customize configuration
@@ -31,4 +31,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
-Copyright (c) 2020 Martin Sit
+Copyright (c) 2020-present Martin Sit

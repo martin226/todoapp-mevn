@@ -3,22 +3,22 @@
 ## Project setup
 
 ```
-npm install
+yarn
 ```
 
 ### Development server
 
 ```
-npm run dev
+yarn dev
 ```
 
 ### Production server
 
 ```
-npm run start
+yarn start
 ```
 
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
-Copyright (c) 2020 Martin Sit
+Copyright (c) 2020-present Martin Sit
